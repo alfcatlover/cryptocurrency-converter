@@ -1,0 +1,23 @@
+.selectorsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.select {
+  width: 100%;
+}
+
+.select:first-child {
+  margin-right: 20px;
+}
+
+@media (max-width: 575.98px) {
+  .inputNumber {
+    width: 100%;
+  }
+  .select:first-child {
+    margin-right: 10px;
+  }
+}
