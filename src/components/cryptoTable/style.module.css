@@ -9,9 +9,15 @@
 }
 
 .center {
+  box-sizing: border-box;
+  max-width: 992px;
   width: 992px;
   border: 1px solid #f0f0f0;
   padding: 20px;
+}
+
+.row > td {
+  padding: 0 0 0 16px !important;
 }
 
 .row:hover {
@@ -28,4 +34,17 @@
     width: 768px;
     padding: 0;
   }
+  .row > td {
+    padding: 0px 0px !important;
+  }
+  .row > td:last-child {
+    padding-right: 0 !important;
+  }
+  .row > td:first-child {
+    padding-left: 16px !important;
+  }
+}
+
+.chart {
+  margin-left: 16px;
 }

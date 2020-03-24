@@ -4,6 +4,8 @@ import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
 
 import { priceFormat } from "../../utils/cryptoTable.utils";
 
+import s from "./style.module.css";
+
 const priceStateToColor = {
   noChange: "inherit",
   up: "green",
@@ -43,19 +45,25 @@ export const CryptoPrice = React.memo(({ price }) => {
 
   const suffix =
     priceStateToColor.up === priceColor ? (
-      <ArrowUpOutlined />
+      <ArrowUpOutlined className={s.arrow} />
     ) : priceStateToColor.down === priceColor ? (
-      <ArrowDownOutlined />
+      <ArrowDownOutlined className={s.arrow} />
     ) : (
-      <ArrowDownOutlined style={{ color: "transparent" }} />
+      <ArrowDownOutlined className={s.arrow} style={{ color: "transparent" }} />
     );
 
   return (
     <Statistic
+      className={s.statistic}
       precision={1}
       suffix={suffix}
       value={priceFormat(price)}
-      valueStyle={{ color: priceColor, fontSize: "1rem" }}
+      valueStyle={{
+        color: priceColor,
+        fontSize: "1rem",
+        lineHeight: "1rem",
+        maxHeight: "min-content"
+      }}
     />
   );
 });

@@ -1,0 +1,13 @@
+@media (max-width: 576px) {
+  .arrow {
+    display: none;
+  }
+}
+
+.statistic {
+  line-height: 1rem;
+  font-size: 1rem;
+  display: block;
+  max-height: 1rem;
+  padding-right: 5px;
+}

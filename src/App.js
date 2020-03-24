@@ -12,11 +12,13 @@ const { Text } = Typography;
 
 function App() {
   return (
-    <Layout style={{ backgroundColor: "white" }}>
-      <Header>
-        <Text style={{ color: "white", fontSize: "2em" }}>
-          Cryptocurrency Converter
-        </Text>
+    <Layout
+      style={{
+        backgroundColor: "white"
+      }}
+    >
+      <Header style={{ backgroundColor: "#FFEB3B", color: "#ffeb3b" }}>
+        <Text style={{ fontSize: "2em" }}>Cryptocurrency Converter</Text>
       </Header>
       <TransformContainer>
         <Selectors />

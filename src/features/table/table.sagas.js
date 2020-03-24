@@ -52,7 +52,14 @@ function createSocketChannel(socket, list) {
       action: "SubAdd",
       subs: getSubs(list)
     };
+
+    const unsubRequest = {
+      action: "SubRemove",
+      subs: getSubs(list)
+    };
+
     socket.send(JSON.stringify(subRequest));
+
     socket.onmessage = event => {
       emit(JSON.parse(event.data));
     };
@@ -60,6 +67,8 @@ function createSocketChannel(socket, list) {
     socket.onclose = () => {
       emit(END);
     };
+
+    socket.unsubRequest = () => socket.send(JSON.stringify(unsubRequest));
 
     const unsubscribe = () => {
       socket.onmessage = null;
@@ -85,6 +94,7 @@ function* listenForSocketMessages() {
     yield put(setNetworkError());
   } finally {
     if (yield cancelled()) {
+      socket.unsubRequest();
       socketChannel.close();
       socket.close();
     } else {
@@ -138,7 +148,8 @@ function* getPayloadFromWebSocket(socketChannel) {
     if (payload.TYPE === "5" && payload.PRICE) {
       yield put(setCryptocurrency(payload));
       yield put(setFetchingSuccess());
-    }
+    } else if (payload.TYPE >= 400 && payload.TYPE <= 500)
+      throw new Error(`${payload.MESSAGE} + ${payload.TYPE}`);
   }
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Table, Layout, Typography, Result } from "antd";
 
-import { CryptoPrice } from "../";
+import { CryptoPrice, Chart } from "../";
 
 import s from "./style.module.css";
 
@@ -30,11 +30,7 @@ export const CryptoTable = ({
       key: "PRICE",
       render: price => <CryptoPrice price={price} />
     },
-    {
-      title: "Market",
-      dataIndex: "MARKET",
-      key: "MARKET"
-    },
+
     {
       title: "Median",
       dataIndex: "MEDIAN",
@@ -44,6 +40,13 @@ export const CryptoTable = ({
           {median ? median.toFixed(3) : "--"}
         </Typography>
       )
+    },
+    {
+      title: "Chart",
+      dataIndex: "PRICE",
+      key: "PRICE",
+      width: "40%",
+      render: price => <Chart price={price} />
     }
   ];
 
